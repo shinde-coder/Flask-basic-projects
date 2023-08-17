@@ -1,0 +1,84 @@
+Things need to work on
+>Request Hooks 
+>Command-Line Options with Flask-Script 
+>Twitter Bootstrap Integration with Flask-Bootstrap 
+
+
+-------------------VS code setup for flask------------------
+python for vscode(extention)
+
+
+------------DB connection-------------------
+from flask_sqlalchemy import SQLAlchemy
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///market.db'
+app = Flask(__name__)
+db = SQLAlchemy(app)
+
+or
+
+from flask import *
+from flask_sqlalchemy import *
+from flask_migrate import *
+
+app=Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///shidne.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db=SQLAlchemy(app)
+migrate=Migrate(app,db)
+
+working-------
+
+from models import db,StudentModel
+
+from flask import *
+from flask_sqlalchemy import *
+from flask_migrate import *
+app=Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///shinde.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db.init_app(app)
+
+migrate=Migrate(app,db)
+ 
+with app.app_context():
+    db.create_all()
+---------------------------------------------
+pip install flask_login
+pip install flask_bcrypt
+pip install login_manager
+----------------------------------------------
+set FLASK_APP=your_app_name.py
+set FLASK_ENV=development
+----------------------------------------------
+handle url error
+
+@app.errorhandler(404)
+def not_found_error(e):
+    return jsonify({"Error": "404 Not Found"})----------------
+----------------------------------------------------------------------------------
+>>>>>>>Template Inheritance:<<<<<<<<<<<<<<
+
+base.html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}My Website{% endblock %}</title>
+</head>
+<body>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
+...........................................
+(index.html) that extends the base template
+
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Welcome to my website!</h1>
+{% endblock %}
+.............................................
+{% include "navbar.html" %}
+----------------------------------------------------------------------------
+

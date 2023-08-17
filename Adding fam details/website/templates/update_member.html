@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}
+Update Family Member
+{% endblock %}
+
+{% block content %}
+<h1>Update Family Member</h1>
+<!-- <form action="/update/{{ member.id }}" method="post"> -->
+<form action="{{ url_for('views.update_member', member_id=member.id) }}" method="post">
+    <input type="hidden" name="id" value="{{ member.id }}">
+
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" name="name" value="{{ member.name }}" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="age">Age:</label>
+        <input type="number" name="age" value="{{ member.age }}" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <label for="gender">Gender:</label>
+        <select name="gender" id="gender" class="form-control" required>
+            <option value="">Select Gender</option>
+            <option value="male" {% if member.gender == 'male' %}selected{% endif %}>Male</option>
+            <option value="female" {% if member.gender == 'female' %}selected{% endif %}>Female</option>
+            <option value="other" {% if member.gender == 'other' %}selected{% endif %}>Other</option>
+        </select>
+
+    <div class="form-group">
+        <label for="relation">Relation:</label>
+        <select name="relation" id="relation" class="form-control" required>
+            <option value="">Select Relation</option>
+            <option value="Father" {% if member.relation == 'Father' %}selected{% endif %}>Father</option>
+            <option value="Mother" {% if member.relation == 'Mother' %}selected{% endif %}>Mother</option>
+            <option value="Sister" {% if member.relation == 'Sister' %}selected{% endif %}>Sister</option>
+            <option value="Brother" {% if member.relation == 'Brother' %}selected{% endif %}>Brother</option>
+            <option value="Other" {% if member.relation == 'Other' %}selected{% endif %}>Other</option>
+        </select>
+    </div>
+    <input type="submit" value="Update" class="btn btn-primary">
+</form>
+{% endblock %}
